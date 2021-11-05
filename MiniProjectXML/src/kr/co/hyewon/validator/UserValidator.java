@@ -1,5 +1,7 @@
 package kr.co.hyewon.validator;
 
+import javax.validation.Validator;
+
 import org.springframework.validation.Errors;
 
 import kr.co.hyewon.beans.UserBean;
@@ -24,6 +26,10 @@ public class UserValidator implements org.springframework.validation.Validator{
 			errors.rejectValue("user_pw2", "NotEquals");
 			// user_pw,user_pw2 에 대한 오류는 NotEquals로 설정해준다.
 			
+		}
+		
+		if(userBean.isUserIdExist() == false) {
+			errors.rejectValue("user_id", "DontCheckUserIdExist");
 		}
 	}
 }

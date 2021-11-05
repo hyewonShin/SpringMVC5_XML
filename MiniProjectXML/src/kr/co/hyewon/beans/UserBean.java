@@ -3,11 +3,6 @@ package kr.co.hyewon.beans;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-
-import kr.co.hyewon.validator.UserValidator;
-
 public class UserBean {
 
 	private int user_idx;
@@ -27,10 +22,20 @@ public class UserBean {
 	@Size(min=4, max=20)
 	@Pattern(regexp="[a-zA-Z0-9]*")
 	private String user_pw2;
-
+	
+	private boolean userIdExist;
+	
+	// 처음에 빈이 생성될 때는 중복검사다 안된거니까 false로 설정.
+	// 최초에 false값을 가질 수 있도록 생성자로 설정해줌.
+	public UserBean() {
+		this.userIdExist = false;
+	}
+	
+	
 	public int getUser_idx() {
 		return user_idx;
 	}
+	
 	public void setUser_idx(int user_idx) {
 		this.user_idx = user_idx;
 	}
@@ -57,6 +62,12 @@ public class UserBean {
 	}
 	public void setUser_pw2(String user_pw2) {
 		this.user_pw2 = user_pw2;
+	}
+	public boolean isUserIdExist() {
+		return userIdExist;
+	}
+	public void setUserIdExist(boolean userIdExist) {
+		this.userIdExist = userIdExist;
 	}
 
 	
