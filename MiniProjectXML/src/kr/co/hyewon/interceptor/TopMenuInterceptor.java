@@ -19,11 +19,6 @@ public class TopMenuInterceptor implements HandlerInterceptor{
 	//XML에서는 interceptor 파일에서 service 클래스가 자동주입 가능하다.
 	
 	
-	public TopMenuInterceptor(TopMenuService topMenuService) {
-		this.topMenuService = topMenuService;
-	}
-	
-	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
