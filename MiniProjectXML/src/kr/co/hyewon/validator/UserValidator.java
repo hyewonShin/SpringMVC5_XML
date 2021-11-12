@@ -29,14 +29,17 @@ public class UserValidator implements org.springframework.validation.Validator{
 		// 로그인 부분에서 이 유효성 검사를 거치면서 오류가 나게 된다.
 		// 해결방안 : 회원가입(joinUserBean)과 로그인(temploginUserBean)의 이름을 다르게 설정해주어서  
 		// UserBean이 회원가입(joinUserBean)에 쓰일 경우에만 유효성 검사를 하게 한다. 
-			if(beanName.equals("joinUserBean")) {
+		if(beanName.equals("joinUserBean")  || beanName.equals("modifyUserBean")) {
 			if(userBean.getUser_pw().equals(userBean.getUser_pw2()) == false) {
 				errors.rejectValue("user_pw", "NotEquals");
 				errors.rejectValue("user_pw2", "NotEquals");
 				// user_pw,user_pw2 에 대한 오류는 NotEquals로 설정해준다.
 			}
+		}
 
-			// 아이디 중복검사 유효성 검사
+		// 아이디 중복검사 유효성 검사(회원가입시)
+		if(beanName.equals("joinUserBean")) {
+
 			if(userBean.isUserIdExist() == false) {
 				errors.rejectValue("user_id", "DontCheckUserIdExist");
 			}
