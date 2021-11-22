@@ -25,4 +25,8 @@ public class BoardDao {
 	public List<ContentBean> getContentList(int board_info_idx) {
 		return sqlsessionTemplate.selectList("board.getContentList", board_info_idx);
 	}
+	
+	public 	ContentBean getContentInfo(int content_idx) {
+		return sqlsessionTemplate.selectOne("board.getContentInfo", content_idx);
+	}
 }
