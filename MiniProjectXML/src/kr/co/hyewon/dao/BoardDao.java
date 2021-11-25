@@ -13,24 +13,28 @@ public class BoardDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlsessionTemplate;
-	
+
 	public void addContentInfo(ContentBean writeContentBean) {
 		sqlsessionTemplate.insert("board.addContentInfo", writeContentBean);
 	}
-	
+
 	public String getBoardInfoName(int board_info_idx) {
 		return sqlsessionTemplate.selectOne("board.getBoardInfoName", board_info_idx);
 	}
-	
+
 	public List<ContentBean> getContentList(int board_info_idx) {
 		return sqlsessionTemplate.selectList("board.getContentList", board_info_idx);
 	}
-	
+
 	public 	ContentBean getContentInfo(int content_idx) {
 		return sqlsessionTemplate.selectOne("board.getContentInfo", content_idx);
 	}
-	
+
 	public void modifyContentInfo(ContentBean modifyContentBean) {
 		sqlsessionTemplate.selectOne("board.modifyContentInfo", modifyContentBean);
+	}
+
+	public void deleteContentInfo(int content_idx) {
+		sqlsessionTemplate.selectOne("board.deleteContentInfo", content_idx);
 	}
 }
